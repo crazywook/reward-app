@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Transmission API
+  description: 리워드를 받을 수 있는 광고를 송출한다.
+  version: 1.0.0
+paths:
+  /user/{userId}/transmission:
+    get:
+      summary: 리워드 광고 송출
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 사용자 아이디
+        - name: country
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 국가
+        - name: gender
+          description: 성별 M, F
+          in: query
+          schema:
+            type: string
+            enum:
+              - 'M'
+              - 'F'
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  campaigns:
+
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/campaign'
+
+components:
+  schemas:
+    campaign:
+      properties:
+        image_url:
+          type: string
+        landing_url:
+          type: string
+        reward:
+          type: number
+        campaignId:
+          type: integer
+        token:
+          type: string
+
+

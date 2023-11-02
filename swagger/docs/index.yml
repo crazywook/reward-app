@@ -1,0 +1,9 @@
+openapi: 3.0.0
+info:
+  title: Reward Server API Document
+  version: 1.0.0
+  description: |-
+    **Index**
+    - [transmission](http://localhost:8001/api-docs/transmission)
+    - [reward](http://localhost:8001/api-docs/reward)
+    - [campaign](http://localhost:8001/api-docs/campaign)

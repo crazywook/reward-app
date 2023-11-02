@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Health API
+  description: Health API
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Health Check
+      responses:
+        '200':
+          description: 성공
+          content:
+            plain/text:
+              schema:
+                type: string
+                example: "healthy"

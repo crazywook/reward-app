@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Reward API
+  description: 리워드 조회, 적립, 차감
+  version: 1.0.0
+paths:
+  /user/{userId}/reward:
+    get:
+      summary: 보상 잔고 확인
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 사용자 아이디
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reward:
+                    type: array
+
+                    items:
+                      $ref: '#/components/schemas/reward'
+
+  /user/{userId}/reward/deposit:
+    post:
+      summary: 리워드 적립
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 사용자 아이디
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                amount:
+                  type: number
+                campaignId:
+                  type: integer
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reward:
+                    type: object
+                    items:
+                      $ref: '#/components/schemas/reward'
+
+  /user/{userId}/reward/withdraw:
+    post:
+      summary: 리워드 차감
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 사용자 아이디
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reward:
+                    type: object
+                    items:
+                      $ref: '#/components/schemas/reward'
+
+components:
+  schemas:
+    reward:
+      type: object
+      properties:
+        userId:
+          type: integer
+        amount:
+          type: number
+

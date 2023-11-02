@@ -1,0 +1,12 @@
+{
+  "mochaExplorer.require": ["ts-node/register", "tsconfig-paths/register"],
+  "mochaExplorer.files": "test/**/*.spec.ts",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "prettier.enableDebugLogs": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "cSpell.words": ["pctr"]
+}

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234 
+      - MONGO_INITDB_DATABASE=reward
+  swagger:
+    build:
+      context: swagger
+      dockerfile: Dockerfile
+    image: reward-swagger:latest
+    ports:
+      - 8002:8002
+    environment:
+      - NODE_ENV=dev
+  app:
+    build: .
+    image: reward-server:latest
+    depends_on:
+      - mongodb
+    ports:
+      - 3002:3002
+
+volumes:
+  mongodb_data:

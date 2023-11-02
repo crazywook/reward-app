@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Reward History API
+  description: 사용자별 리워드 내역
+  version: 1.0.0
+paths:
+  /user/{userId}/reward-history:
+    get:
+      summary: 보상 잔고 확인
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: 사용자 아이디
+      responses:
+        '200':
+          description: 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rewardHistories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/rewardHistory'
+
+components:
+  schemas:
+    rewardHistory:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        action:
+          type: string
+          enum: [deposit, withdraw]
+        amount:
+          type: number
+        campaignId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
