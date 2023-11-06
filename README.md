@@ -1,6 +1,20 @@
 # 개요
 광고 리워드 서버를 만들어보자
 
+# 환경
+node v20
+mongoDB v4
+
+# 실행
+- 서버
+```shell
+docker compose up
+```
+- API docs
+```
+localhost:8002/api-docs
+```
+
 # 광고 서버 구현하기
 클라이언트는 서버에 광고 송출 요청을 보내 광고의 리스트를 반환받습니다.
 
